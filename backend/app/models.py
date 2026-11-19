@@ -8,17 +8,7 @@ class Departments(models.Model):
     dept_name = models.CharField(max_length=50)
     tot_emp = models.IntegerField(default=0)
 
-    APPROVAL_CHOICES = [
-    ('Pending', 'Pending'),
-    ('Approved', 'Approved'),
-    ('Rejected', 'Rejected'),
-    ]
-
-    approval_status = models.CharField(
-    max_length=10,
-    choices=APPROVAL_CHOICES,
-    default='Pending'
-    )
+    
 
     def __str__(self):
         return self.dept_name
@@ -32,7 +22,19 @@ class Employees(models.Model):
         ('Admin', 'Admin'),
     ]
 
-    emp_id = models.IntegerField(primary_key=True)
+    APPROVAL_CHOICES = [
+        ('Pending', 'Pending'),
+        ('Approved', 'Approved'),
+        ('Rejected', 'Rejected'),
+        ]
+    
+    approval_status = models.CharField(
+        max_length=10,
+        choices=APPROVAL_CHOICES,
+        default='Pending'
+    )
+
+    emp_id = models.AutoField(primary_key=True)
     emp_name = models.CharField(max_length=100)
     emp_phone = models.CharField(max_length=15)
     emp_email = models.EmailField()
